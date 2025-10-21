@@ -28,3 +28,28 @@ export function typeWriterEffect(element, words, delay = 150) {
 
   type();
 }
+
+export function typeWriterPlaceholder(element, words, speed = 100, delay = 2000) {
+  let wordIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  function type() {
+    const word = words[wordIndex];
+    const displayText = deleting ? word.substring(0, charIndex--) : word.substring(0, charIndex++);
+
+    element.setAttribute("placeholder", displayText + (deleting ? "" : "|")); // blinking cursor
+
+    if (!deleting && charIndex === word.length) {
+      setTimeout(() => deleting = true, delay);
+    } else if (deleting && charIndex === 0) {
+      deleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+    }
+
+    const typingSpeed = deleting ? speed / 2 : speed;
+    setTimeout(type, typingSpeed);
+  }
+
+  type();
+}

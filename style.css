@@ -37,6 +37,7 @@ header h1 {
   overflow: hidden;
   vertical-align: bottom;
   animation: blink 0.8s infinite;
+  color: #ddd700;
 }
 
 @keyframes blink {
@@ -60,7 +61,7 @@ header h1 {
   background: #1a1a1a;
   border: 1px solid #333;
   border-radius: 50px;
-  padding: 10px 20px;
+  padding: 5px 10px;
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
 }
 
