@@ -33,17 +33,39 @@ function search() {
    const item = document.createElement('div');
    item.classList.add('result-item');
    item.innerHTML = `
+    <div class="result-tag">Available</div>
     <img src="${part.picture}" alt="${part.name}" class="result-img" />
     <div class="result-info">
      <h4>${part.name}</h4>
      <p>${part.streetName}</p>
      <small>${part.use}</small>
-    </div>`;
+    </div>
+    <button class="order-btn" 
+    onclick="window.open('https://wa.me/+237697436198?text=Hi! I’d like to place an order for ${encodeURIComponent(part.name)}.', '_blank')">
+    Place Order
+    </button>`;
    resultsContainer.appendChild(item);
   });
+  showModal()
  } else {
   resultsContainer.innerHTML = '<p class="no-results">No parts found.</p>';
  }
+}
+
+// Modal control
+function showModal() {
+  const modal = document.getElementById('infoModal');
+  const closeBtn = document.getElementById('closeModalBtn');
+
+  // Only show once per session
+  if (sessionStorage.getItem('modalShown')) return;
+
+  modal.style.display = 'flex';
+  sessionStorage.setItem('modalShown', 'true');
+
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -59,3 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Listen for input changes
 searchInput.addEventListener('input', search)
+
+document.querySelector("#results-section").addEventListener("click", (e) => {
+  const resultItem = e.target.closest(".result-item");
+  
+  if (!resultItem) return;
+
+  if (e.target.classList.contains("order-btn")) return;
+
+  const partName = resultItem.querySelector("h4").textContent.trim();
+  const searchURL = `https://www.google.com/search?q=${encodeURIComponent(partName)} auto part`;
+  
+  window.open(searchURL, "_blank");
+});

@@ -10,10 +10,17 @@
 </head>
 <body>
   <header>
+   <div class="logo-container">
+    <a>
+     <img src="download.jpeg">
+    </a>
+   </div>
+   <div>
     <h1>The largest database of auto parts in Nigeria</h1>
     <p class="subheader">
       Find <span class="typing" data-words='["information", "pictures", "sellers"]'></span> of any auto parts
     </p>
+   </div>
   </header>
 
   <section class="search-section">
@@ -29,6 +36,19 @@
   </section>
   
   <section id="results-section"></section>
+  
+  <!-- Info Modal -->
+<div id="infoModal" class="modal-overlay">
+  <div class="modal-content">
+    <h3>Quick Tip</h3>
+    <p>
+      You can click each item to read more information about the auto parts,
+      or you can buy the auto part from available stores by clicking the
+      <strong>Place Order</strong> button.
+    </p>
+    <button id="closeModalBtn">OK</button>
+  </div>
+</div>
 
   <!-- Import main module -->
   <script type="module" src="main.js"></script>
