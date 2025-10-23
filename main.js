@@ -44,7 +44,6 @@ function search() {
  } else {
   resultsContainer.innerHTML = '<p class="no-results">No parts found.</p>';
  }
-console.log("Hey")
 }
 
 document.addEventListener('DOMContentLoaded', () => {
